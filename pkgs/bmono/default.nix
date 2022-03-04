@@ -1,22 +1,14 @@
-{ lib, fetchzip }:
+{ lib, stdenv, fetchzip }:
 
-let
-  version = "v1.2-11.2.2";
-in fetchzip rec {
-  name = "cosevka-${version}";
-  url = "https://github.com/NNBnh/bmono/releases/download/${version}/bmono-ttf.zip";
-  sha256 = "0000000000000000000000000000000000000000000000000000";
-  # NOTE: This hash is **not** identical to the `nix-prefetch-url --unpack`
-  # output, because moving the font files to `$out/share/fonts/truetype` also
-  # affects the hash.
-
-  postFetch = let
-    basename = baseNameOf url;
-  in ''
-    renamed="$TMPDIR/${basename}"
-    mv "$downloadedFile" "$renamed"
-    unpackFile "$renamed"
-    install -m444 -D -t $out/share/fonts/truetype *.ttf
+stdenv.mkDerivation rec {
+  version = "1.2-11.2.2";
+  name = "bmono-${version}";
+  src = fetchzip {
+    url = "https://github.com/NNBnh/bmono/releases/download/v${version}/bmono-ttf.zip";
+    sha256 = "0c9blhj8rmpmwh7vp2i8f4w8lmbrvk3bd5davh7wqxdd72fmc5gq";
+  };
+  buildCommand = ''
+    install --target $out/share/fonts/truetype/ -D $src/ttf/*.ttf 
   '';
 
   meta = with lib; {
