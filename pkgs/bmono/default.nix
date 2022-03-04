@@ -5,7 +5,7 @@ stdenv.mkDerivation rec {
   name = "bmono-${version}";
   src = fetchzip {
     url = "https://github.com/NNBnh/bmono/releases/download/v${version}/bmono-ttf.zip";
-    sha256 = "0c9blhj8rmpmwh7vp2i8f4w8lmbrvk3bd5davh7wqxdd72fmc5gq";
+    hash = "sha256-/o3IyGlhWm45rxWW3bD4FLeCjiNP8HWx5BZVGFrryXI=";
   };
   buildCommand = ''
     install --target $out/share/fonts/truetype/ -D $src/ttf/*.ttf 
