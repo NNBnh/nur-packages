@@ -1,7 +1,8 @@
 { lib, fetchzip }:
 
-fetchzip {
+let
   version = "1.2-11.2.2";
+in fetchzip {
   name = "bmono-${version}";
   url = "https://github.com/NNBnh/bmono/releases/download/v${version}/bmono-ttf.zip";
   sha256 = "sha256-/o3IyGlhWm45rxWW3bD4FLeCjiNP8HWx5BZVGFrryXI=";
