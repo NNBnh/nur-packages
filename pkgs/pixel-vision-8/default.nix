@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchzip }:
+{ stdenv, lib, fetchzip, autoPatchelfHook }:
 
 stdenv.mkDerivation rec {
   name = "pixel-vision-8-${version}";
