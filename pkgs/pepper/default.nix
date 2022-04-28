@@ -2,7 +2,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "pepper";
-  version = "0.23.3";
+  version = "0.26.1";
 
   src = fetchCrate {
     inherit pname version;
