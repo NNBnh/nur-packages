@@ -2,7 +2,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "pepper-plugin-lsp";
-  version = "0.10.0";
+  version = "0.13.0";
 
   src = fetchCrate {
     inherit pname version;
