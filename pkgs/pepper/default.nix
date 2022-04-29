@@ -1,4 +1,4 @@
-{ lib, fetchCrate, rustPlatform }:
+{ lib, fetchCrate, rustPlatform, fetchFromGitHub }:
 
 with import <nixpkgs> {
   overlays = [
