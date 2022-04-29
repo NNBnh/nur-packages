@@ -9,7 +9,7 @@ with import <nixpkgs> {
           repo = "rust-overlay";
           rev = "403f362c5d921764bae021cf6c8bd669a51fddd4";
           sha256 = "1hqps7l5qrjh9f914r5i6kmcz6f1yb951nv4lby0cjnp5l253kps";
-        };
+        }
       )
     )
   ];
