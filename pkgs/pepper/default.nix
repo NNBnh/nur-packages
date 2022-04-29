@@ -1,8 +1,17 @@
 { lib, fetchCrate, rustPlatform }:
 
+with import <nixpkgs> {
+  overlays = [
+    (import (fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
+  ];
+};
+
 rustPlatform.buildRustPackage rec {
   pname = "pepper";
   version = "0.26.1";
+  nativeBuildInputs = [
+    rust-bin.stable.latest.minimal
+  ];
 
   src = fetchCrate {
     inherit pname version;
