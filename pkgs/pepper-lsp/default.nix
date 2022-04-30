@@ -1,16 +1,19 @@
-{ lib, fetchCrate, rustPlatform }:
+{ lib, fetchCrate, rustPlatform, fetchFromGitHub }:
 
-with import <nixpkgs> {
-  overlays = [
-    (import (fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
-  ];
-};
-
+with import <nixpkgs> {};
+let src = fetchFromGitHub {
+      owner = "mozilla";
+      repo = "nixpkgs-mozilla";
+      rev = "e1f7540fc0a8b989fb8cf701dc4fd7fc76bcf168";
+      sha256 = "1b6p0rly0rywq60ks84ghc0n5zrqiafc2r64nlbnlkh9whmh5fmj";
+   };
+in
+with import "${src.out}/rust-overlay.nix" pkgs pkgs;
 rustPlatform.buildRustPackage rec {
   pname = "pepper-plugin-lsp";
   version = "0.13.0";
   nativeBuildInputs = [
-    rust-bin.stable.latest.minimal
+    latest.rustChannels.stable.rust
   ];
 
   src = fetchCrate {

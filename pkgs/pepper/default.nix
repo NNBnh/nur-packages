@@ -5,7 +5,7 @@ let src = fetchFromGitHub {
       owner = "mozilla";
       repo = "nixpkgs-mozilla";
       rev = "e1f7540fc0a8b989fb8cf701dc4fd7fc76bcf168";
-      sha256 = "18h0nvh55b5an4gmlgfbvwbyqj91bklf1zymis6lbdh75571qaz0";
+      sha256 = "1b6p0rly0rywq60ks84ghc0n5zrqiafc2r64nlbnlkh9whmh5fmj";
    };
 in
 with import "${src.out}/rust-overlay.nix" pkgs pkgs;
@@ -13,7 +13,7 @@ rustPlatform.buildRustPackage rec {
   pname = "pepper";
   version = "0.26.1";
   nativeBuildInputs = [
-    rust-bin.stable.latest.minimal
+    latest.rustChannels.stable.rust
   ];
 
   src = fetchCrate {
